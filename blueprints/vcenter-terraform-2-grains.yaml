@@ -1,0 +1,133 @@
+spec_version: 2-preview
+
+description: test blueprint for deploying VMs on vcenter
+
+inputs:
+  private_cloud_login:
+    display-style: normal
+    type: string
+    description: the vCenter user name
+
+  private_cloud_password:
+    display-style: normal
+    type: string
+    description: the vCenter password
+
+  private_cloud_host:
+    display-style: normal
+    type: string
+    description: the vCenter host name
+
+  datacenter_name:
+    display-style: normal
+    type: string
+    description: the vCenter data center name
+  
+  esxi_host:
+    display-style: normal
+    type: string
+    description: the vCenter esxi host name
+
+  datastore_name:
+    display-style: normal
+    type: string
+    description: the vCenter data store name
+
+  virtual_switch_name:
+    display-style: normal
+    type: string
+    description: the vCenter virtual switch name to create the new network in
+
+  vlan_id:
+    display-style: normal
+    type: string
+    description: the vCenter vlan-id
+
+  resource_pool_name:
+    display-style: normal
+    type: string
+    description: the vCenter resource pool name
+
+  network_name:
+    display-style: normal
+    type: string
+    description: the new desired network name
+
+  virtual_machine_template_name:
+    display-style: normal
+    type: string
+    description: the template to deploy the vm from
+
+  virtual_machine_folder:
+    display-style: normal
+    type: string
+    description: the the vCenter folder to put the new vm into
+  
+grains:
+  vlan:
+    kind: terraform
+    spec:
+      inputs:
+        - private_cloud_login:  '{{ .inputs.private_cloud_login }}'
+        - private_cloud_password: '{{ .inputs.private_cloud_password }}'
+        - private_cloud_host: '{{ .inputs.private_cloud_host }}'
+        - datacenter_name: '{{ .inputs.datacenter_name }}'
+        - esxi_host: '{{ .inputs.esxi_host }}'
+        - virtual_switch_name: '{{ .inputs.virtual_switch_name }}'
+        - port_group_name: '{{ .inputs.network_name }}'
+        - vlan_id: '{{ .inputs.vlan_id }}'
+
+      source:
+        store: vcenter-terraform-demo
+        path: /vlan-from-template
+      
+      host:
+        cloud-account: private-cloud
+        compute-service: vcenter
+
+  vm1:
+    kind: terraform
+    spec:
+      inputs:
+        - private_cloud_login:  '{{ .inputs.private_cloud_login }}'
+        - private_cloud_password: '{{ .inputs.private_cloud_password }}'
+        - private_cloud_host: '{{ .inputs.private_cloud_host }}'
+        - datacenter_name: '{{ .inputs.datacenter_name }}'
+        - datastore_name: '{{ .inputs.datastore_name }}'
+        - resource_pool_name: '{{ .inputs.resource_pool_name }}'
+        - network_name: '{{ .inputs.network_name }}'
+        - virtual_machine_template_name: '{{ .inputs.virtual_machine_template_name }}'
+        - virtual_machine_name: "vm1"
+        - virtual_machine_folder: '{{ .inputs.virtual_machine_folder }}'
+
+      source:
+        store: vcenter-terraform-demo
+        path: /vm-in-vlan-from-template
+      
+      host:
+        cloud-account: private-cloud
+        compute-service: vcenter
+
+  vm2:
+    depends-on: vm1
+    kind: terraform
+    spec:
+      inputs:
+        - private_cloud_login:  '{{ .inputs.private_cloud_login }}'
+        - private_cloud_password: '{{ .inputs.private_cloud_password }}'
+        - private_cloud_host: '{{ .inputs.private_cloud_host }}'
+        - datacenter_name: '{{ .inputs.datacenter_name }}'
+        - datastore_name: '{{ .inputs.datastore_name }}'
+        - resource_pool_name: '{{ .inputs.resource_pool_name }}'
+        - network_name: '{{ .inputs.network_name }}'
+        - virtual_machine_template_name: '{{ .inputs.virtual_machine_template_name }}'
+        - virtual_machine_name: "vm2"
+        - virtual_machine_folder: '{{ .inputs.virtual_machine_folder }}'
+
+      source:
+        store: vcenter-terraform-demo
+        path: /vm-in-vlan-from-template
+      
+      host:
+        cloud-account: private-cloud
+        compute-service: vcenter
