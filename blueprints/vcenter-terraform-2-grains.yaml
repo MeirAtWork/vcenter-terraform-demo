@@ -22,46 +22,55 @@ inputs:
     display-style: normal
     type: string
     description: the vCenter data center name
+    default: "Qualisystems"
   
   esxi_host:
     display-style: normal
     type: string
     description: the vCenter esxi host name
+    default: "192.168.42.237"
 
   datastore_name:
     display-style: normal
     type: string
     description: the vCenter data store name
+    default: "DATASTORE HOST1"
 
   virtual_switch_name:
     display-style: normal
     type: string
     description: the vCenter virtual switch name to create the new network in
+    default: "vSwitch5"
 
   vlan_id:
     display-style: normal
     type: string
     description: the vCenter vlan-id
+    default: "12"
 
   resource_pool_name:
     display-style: normal
     type: string
     description: the vCenter resource pool name
+    default: "testing"
 
   network_name:
     display-style: normal
     type: string
     description: the new desired network name
+    default: "myPortGroup"
 
   virtual_machine_template_name:
     display-style: normal
     type: string
     description: the template to deploy the vm from
+    default: "CentOs79Template"
 
   virtual_machine_folder:
     display-style: normal
     type: string
     description: the the vCenter folder to put the new vm into
+    default: "testingVcenter"
   
 grains:
   vlan:
