@@ -96,6 +96,7 @@ grains:
 
   vm1:
     kind: terraform
+    depends-on: vlan
     spec:
       inputs:
         - private_cloud_login:  '{{ .inputs.private_cloud_login }}'
@@ -118,8 +119,8 @@ grains:
         compute-service: vcenter
 
   vm2:
-    depends-on: vm1
     kind: terraform
+    depends-on: vlan
     spec:
       inputs:
         - private_cloud_login:  '{{ .inputs.private_cloud_login }}'
