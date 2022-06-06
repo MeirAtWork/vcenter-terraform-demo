@@ -87,11 +87,11 @@ grains:
         - vlan_id: '{{ .inputs.vlan_id }}'
 
       source:
-        store: vcenter-terraform-demo
-        path: /vlan-from-template
+        # store: vcenter-terraform-demo
+        path: vlan-from-template
       
       host:
-        cloud-account: private-cloud
+        # cloud-account: private-cloud
         compute-service: vcenter
 
   vm1:
@@ -111,11 +111,11 @@ grains:
         - virtual_machine_folder: '{{ .inputs.virtual_machine_folder }}'
 
       source:
-        store: vcenter-terraform-demo
-        path: /vm-in-vlan-from-template
+        # store: vcenter-terraform-demo
+        path: vm-in-vlan-from-template
       
       host:
-        cloud-account: private-cloud
+        # cloud-account: private-cloud
         compute-service: vcenter
 
   vm2:
@@ -135,9 +135,9 @@ grains:
         - virtual_machine_folder: '{{ .inputs.virtual_machine_folder }}'
 
       source:
-        store: vcenter-terraform-demo
-        path: /vm-in-vlan-from-template
+        # store: vcenter-terraform-demo
+        path: vm-in-vlan-from-template
       
       host:
-        cloud-account: private-cloud
+        # cloud-account: private-cloud
         compute-service: vcenter
