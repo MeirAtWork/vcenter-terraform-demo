@@ -87,7 +87,7 @@ grains:
         - vlan_id: '{{ .inputs.vlan_id }}'
 
       source:
-        # store: autogen_repo_sandbox_eb0cfecd
+        store: vcenter-terraform-demo
         path: /vlan-from-template
       
       host:
@@ -111,7 +111,7 @@ grains:
         - virtual_machine_folder: '{{ .inputs.virtual_machine_folder }}'
 
       source:
-        # store: autogen_repo_sandbox_eb0cfecd
+        store: vcenter-terraform-demo
         path: /vm-in-vlan-from-template
       
       host:
@@ -135,7 +135,7 @@ grains:
         - virtual_machine_folder: '{{ .inputs.virtual_machine_folder }}'
 
       source:
-        # store: autogen_repo_sandbox_eb0cfecd
+        store: vcenter-terraform-demo
         path: /vm-in-vlan-from-template
       
       host:
