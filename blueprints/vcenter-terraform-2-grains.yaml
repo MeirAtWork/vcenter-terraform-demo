@@ -84,7 +84,7 @@ grains:
         - esxi_host: '{{ .inputs.esxi_host }}'
         - virtual_switch_name: '{{ .inputs.virtual_switch_name }}'
         - port_group_name: '{{ .inputs.network_name }}'
-        - vlan_id: '{{ .vcenter.get_available_vlan_id }}'
+        - vlan_id: '{{ network }} {% get_next_available_network_id  my_humble_pool %}'
 
       source:
         store: vcenter-terraform-demo
