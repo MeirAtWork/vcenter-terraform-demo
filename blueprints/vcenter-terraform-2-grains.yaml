@@ -42,12 +42,6 @@ inputs:
     description: the vCenter virtual switch name to create the new network in
     default: "vSwitch5"
 
-  vlan_id:
-    display-style: normal
-    type: string
-    description: the vCenter vlan-id
-    default: "12"
-
   resource_pool_name:
     display-style: normal
     type: string
@@ -84,14 +78,13 @@ grains:
         - esxi_host: '{{ .inputs.esxi_host }}'
         - virtual_switch_name: '{{ .inputs.virtual_switch_name }}'
         - port_group_name: '{{ .inputs.network_name }}'
-        - vlan_id: '{{ network }} {% get_next_available_network_id  my_humble_pool %}'
+        - vlan_id: '{% get_next_available_item  my_humble_pool %}'
 
       source:
         store: vcenter-terraform-demo
         path: vlan-from-template
       
       host:
-        # cloud-account: private-cloud
         compute-service: vcenter
 
   vm1:
@@ -115,7 +108,6 @@ grains:
         path: vm-in-vlan-from-template
       
       host:
-        # cloud-account: private-cloud
         compute-service: vcenter
 
   vm2:
@@ -139,5 +131,4 @@ grains:
         path: vm-in-vlan-from-template
       
       host:
-        # cloud-account: private-cloud
         compute-service: vcenter
