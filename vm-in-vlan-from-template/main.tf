@@ -16,10 +16,15 @@ data "vsphere_datastore" "ds" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-data "vsphere_resource_pool" "pool" {
-  name          = var.resource_pool_name
+data "vsphere_compute_cluster" "cluster" {
+  name          = var.compute_cluster_name
   datacenter_id = data.vsphere_datacenter.dc.id
 }
+
+/*data "vsphere_resource_pool" "pool" {
+  name          = var.resource_pool_name
+  datacenter_id = data.vsphere_datacenter.dc.id
+}*/
 
 data "vsphere_network" "network" {
   name          = var.network_name
@@ -33,7 +38,8 @@ data "vsphere_virtual_machine" "template" {
 
 resource "vsphere_virtual_machine" "vm" {
   name             = var.virtual_machine_name
-  resource_pool_id = data.vsphere_resource_pool.pool.id
+  # resource_pool_id = data.vsphere_resource_pool.pool.id
+  resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_id     = data.vsphere_datastore.ds.id
   num_cpus         = 1
   memory           = 1024

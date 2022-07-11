@@ -1,4 +1,4 @@
-terraform destroy                                                  ^
+terraform plan                                                     ^
   -var "private_cloud_login=xxx@QUALISYSTEMS.LOCAL"                ^
   -var "private_cloud_password=xxx"                                ^
   -var "private_cloud_host=192.168.42.110"                         ^
@@ -9,6 +9,9 @@ terraform destroy                                                  ^
   -var "network_name=myPortGroup"                                  ^
   -var "virtual_machine_template_name=Ubuntu 18.04 Clean"          ^
   -var "virtual_machine_name=aaa"                                  ^
-  -var "virtual_machine_folder=Meir.b/testingVcenter"
+  -var "virtual_machine_folder=Meir.b/testingVcenter"              ^
+  -out=c:\temp\vmPlan.bin
+
+terraform show -json c:\temp\vmPlan.bin > c:\temp\vmPlan.json
 
 pause

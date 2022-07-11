@@ -28,6 +28,11 @@ variable "resource_pool_name" {
   default = "placeholder"
 }
 
+variable "compute_cluster_name" {
+  type = string
+  default = "Sandbox Cluster"
+}
+
 variable "network_name" {
   type = string
   default = "Local"
