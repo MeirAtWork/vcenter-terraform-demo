@@ -48,6 +48,12 @@ inputs:
     description: the vCenter resource pool name
     default: "testing"
 
+  compute_cluster_name:
+    display-style: normal
+    type: string
+    description: the vCenter resource pool name
+    default: "testing"
+
   network_name:
     display-style: normal
     type: string
@@ -98,6 +104,7 @@ grains:
         - datacenter_name: '{{ .inputs.datacenter_name }}'
         - datastore_name: '{{ .inputs.datastore_name }}'
         - resource_pool_name: '{{ .inputs.resource_pool_name }}'
+        - compute_cluster_name: '{{ .inputs.compute_cluster_name }}'
         - network_name: '{{ .inputs.network_name }}'
         - virtual_machine_template_name: '{{ .inputs.virtual_machine_template_name }}'
         - virtual_machine_name: "vm1"
@@ -121,6 +128,7 @@ grains:
         - datacenter_name: '{{ .inputs.datacenter_name }}'
         - datastore_name: '{{ .inputs.datastore_name }}'
         - resource_pool_name: '{{ .inputs.resource_pool_name }}'
+        - compute_cluster_name: '{{ .inputs.compute_cluster_name }}'
         - network_name: '{{ .inputs.network_name }}'
         - virtual_machine_template_name: '{{ .inputs.virtual_machine_template_name }}'
         - virtual_machine_name: "vm2"
