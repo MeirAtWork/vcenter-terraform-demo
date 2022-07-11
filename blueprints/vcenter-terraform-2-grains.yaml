@@ -12,6 +12,7 @@ inputs:
     display-style: normal
     type: string
     description: the vCenter password
+    sensitive: true
 
   private_cloud_host:
     display-style: normal
@@ -51,7 +52,7 @@ inputs:
   compute_cluster_name:
     display-style: normal
     type: string
-    description: the vCenter resource pool name
+    description: the vCenter compute cluster name
     default: "testing"
 
   network_name:
